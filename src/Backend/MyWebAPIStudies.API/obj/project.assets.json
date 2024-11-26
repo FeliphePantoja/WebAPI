@@ -88,6 +88,51 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "MyWebAPIStudies.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "MyWebAPIStudies.Communication": "1.0.0",
+          "MyWebAPIStudies.Domain": "1.0.0",
+          "MyWebAPIStudies.Exceptions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MyWebAPIStudies.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyWebAPIStudies.Application.dll": {}
+        }
+      },
+      "MyWebAPIStudies.Communication/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MyWebAPIStudies.Communication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyWebAPIStudies.Communication.dll": {}
+        }
+      },
+      "MyWebAPIStudies.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MyWebAPIStudies.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyWebAPIStudies.Domain.dll": {}
+        }
+      },
+      "MyWebAPIStudies.Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MyWebAPIStudies.Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyWebAPIStudies.Exceptions.dll": {}
+        }
       }
     }
   },
@@ -439,10 +484,33 @@
         "swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "MyWebAPIStudies.Application/1.0.0": {
+      "type": "project",
+      "path": "../MyWebAPIStudies.Application/MyWebAPIStudies.Application.csproj",
+      "msbuildProject": "../MyWebAPIStudies.Application/MyWebAPIStudies.Application.csproj"
+    },
+    "MyWebAPIStudies.Communication/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/MyWebAPIStudies.Communication/MyWebAPIStudies.Communication.csproj",
+      "msbuildProject": "../../Shared/MyWebAPIStudies.Communication/MyWebAPIStudies.Communication.csproj"
+    },
+    "MyWebAPIStudies.Domain/1.0.0": {
+      "type": "project",
+      "path": "../MyWebAPIStudies.Domain/MyWebAPIStudies.Domain.csproj",
+      "msbuildProject": "../MyWebAPIStudies.Domain/MyWebAPIStudies.Domain.csproj"
+    },
+    "MyWebAPIStudies.Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/MyWebAPIStudies.Exceptions/MyWebAPIStudies.Exceptions.csproj",
+      "msbuildProject": "../../Shared/MyWebAPIStudies.Exceptions/MyWebAPIStudies.Exceptions.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "MyWebAPIStudies.Application >= 1.0.0",
+      "MyWebAPIStudies.Communication >= 1.0.0",
+      "MyWebAPIStudies.Exceptions >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -478,7 +546,17 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Legion\\source\\repos\\MyWebAPIStudies\\src\\Backend\\MyWebAPIStudies.Application\\MyWebAPIStudies.Application.csproj": {
+              "projectPath": "C:\\Users\\Legion\\source\\repos\\MyWebAPIStudies\\src\\Backend\\MyWebAPIStudies.Application\\MyWebAPIStudies.Application.csproj"
+            },
+            "C:\\Users\\Legion\\source\\repos\\MyWebAPIStudies\\src\\Shared\\MyWebAPIStudies.Communication\\MyWebAPIStudies.Communication.csproj": {
+              "projectPath": "C:\\Users\\Legion\\source\\repos\\MyWebAPIStudies\\src\\Shared\\MyWebAPIStudies.Communication\\MyWebAPIStudies.Communication.csproj"
+            },
+            "C:\\Users\\Legion\\source\\repos\\MyWebAPIStudies\\src\\Shared\\MyWebAPIStudies.Exceptions\\MyWebAPIStudies.Exceptions.csproj": {
+              "projectPath": "C:\\Users\\Legion\\source\\repos\\MyWebAPIStudies\\src\\Shared\\MyWebAPIStudies.Exceptions\\MyWebAPIStudies.Exceptions.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
