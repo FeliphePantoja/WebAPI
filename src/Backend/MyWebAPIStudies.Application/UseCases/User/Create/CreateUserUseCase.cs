@@ -1,5 +1,6 @@
 ﻿using MyWebAPIStudies.Communication.Requests;
 using MyWebAPIStudies.Communication.Responses;
+using MyWebAPIStudies.Exceptions.ExceptionsBase;
 using System.Net.Http.Headers;
 
 namespace MyWebAPIStudies.Application.UseCases.User.Create
@@ -22,9 +23,9 @@ namespace MyWebAPIStudies.Application.UseCases.User.Create
 			var result = new CreateUserValidator().Validate(newUser);
 			if (!result.IsValid)
 			{
-				var errorMSGs = result.Errors.Select(x => x.ErrorMessage);
+				var errorMSGs = result.Errors.Select(x => x.ErrorMessage).ToList();
 
-				throw new Exception();
+				throw new ErrorOnValidationException(errorMSGs);
 			}
 		}
 	}
