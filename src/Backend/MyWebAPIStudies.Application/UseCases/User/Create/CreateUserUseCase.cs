@@ -1,7 +1,7 @@
-﻿using MyWebAPIStudies.Communication.Requests;
+﻿using MyWebAPIStudies.Application.AutoMappers;
+using MyWebAPIStudies.Communication.Requests;
 using MyWebAPIStudies.Communication.Responses;
 using MyWebAPIStudies.Exceptions.ExceptionsBase;
-using System.Net.Http.Headers;
 
 namespace MyWebAPIStudies.Application.UseCases.User.Create
 {
@@ -11,6 +11,12 @@ namespace MyWebAPIStudies.Application.UseCases.User.Create
 		public ResponseCreateUserJson Execute(RequestCreateUserJson newUser)
 		{
 			Validate(newUser);
+
+			var autoMapper = new AutoMapper.MapperConfiguration(
+				opt => opt.AddProfile(new AutoMapping())
+				).CreateMapper();
+
+			var user = autoMapper.Map<Domain.Entities.User>(newUser);
 
 			return new ResponseCreateUserJson
 			{
