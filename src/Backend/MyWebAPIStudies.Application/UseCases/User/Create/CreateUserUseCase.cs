@@ -1,4 +1,5 @@
 ﻿using MyWebAPIStudies.Application.AutoMappers;
+using MyWebAPIStudies.Application.Cryptography;
 using MyWebAPIStudies.Communication.Requests;
 using MyWebAPIStudies.Communication.Responses;
 using MyWebAPIStudies.Exceptions.ExceptionsBase;
@@ -10,14 +11,15 @@ namespace MyWebAPIStudies.Application.UseCases.User.Create
 
 		public ResponseCreateUserJson Execute(RequestCreateUserJson newUser)
 		{
-			Validate(newUser);
-
+			var createPasswordCrypt = new PasswordEncripter();
 			var autoMapper = new AutoMapper.MapperConfiguration(
 				opt => opt.AddProfile(new AutoMapping())
 				).CreateMapper();
 
-			var user = autoMapper.Map<Domain.Entities.User>(newUser);
+			Validate(newUser);
 
+			var user = autoMapper.Map<Domain.Entities.User>(newUser);
+			user.Password = createPasswordCrypt.Encrypt(newUser.Password);
 			return new ResponseCreateUserJson
 			{
 				Name = newUser.Name,
