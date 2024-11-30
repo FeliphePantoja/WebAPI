@@ -70,6 +70,15 @@ namespace MyWebAPIStudies.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O E-mail já foi cadastrado.
+        /// </summary>
+        public static string EMAIL_EXISTE {
+            get {
+                return ResourceManager.GetString("EMAIL_EXISTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O formato do e-mail está incorreto..
         /// </summary>
         public static string FORMAT_EMAIL_INCORRECT {

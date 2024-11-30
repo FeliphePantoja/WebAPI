@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\Shared\MyWebAPIStudies.Communication\MyWebAPIStudies.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\MyWebAPIStudies.Exceptions\MyWebAPIStudies.Exceptions.csproj" />
     <ProjectReference Include="..\MyWebAPIStudies.Application\MyWebAPIStudies.Application.csproj" />
+    <ProjectReference Include="..\MyWebAPIStudies.Infrastructure\MyWebAPIStudies.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

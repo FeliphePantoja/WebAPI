@@ -11,9 +11,11 @@ namespace MyWebAPIStudies.API.Controllers
 	{
 		[HttpPost]
 		[ProducesResponseType(typeof(ResponseCreateUserJson), StatusCodes.Status201Created)]
-		public IActionResult Register(RequestCreateUserJson user)
+		public async Task<IActionResult> Register(
+			[FromServices] ICreateUserCase createUser,//Injetando a dependencia na requisição
+			[FromBody] RequestCreateUserJson user)//Vem do body
 		{
-			var userCase = new CreateUserUseCase().Execute(user);
+			var userCase = await createUser.Execute(user);
 			return Created(string.Empty, userCase);
 		}
 	}

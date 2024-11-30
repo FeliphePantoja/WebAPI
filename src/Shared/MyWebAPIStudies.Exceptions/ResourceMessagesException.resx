@@ -120,6 +120,9 @@
   <data name="EMAIL_EMPTY" xml:space="preserve">
     <value>O E-mail não pode ser vazio.</value>
   </data>
+  <data name="EMAIL_EXISTE" xml:space="preserve">
+    <value>O E-mail já foi cadastrado</value>
+  </data>
   <data name="FORMAT_EMAIL_INCORRECT" xml:space="preserve">
     <value>O formato do e-mail está incorreto.</value>
   </data>

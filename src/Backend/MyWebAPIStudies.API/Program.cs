@@ -1,4 +1,8 @@
 using MyWebAPIStudies.API.Filters;
+using MyWebAPIStudies.Application;
+using MyWebAPIStudies.Domain.Repositories.User;
+using MyWebAPIStudies.Infrastructure;
+using MyWebAPIStudies.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,9 @@ builder.Services.AddSwaggerGen();
 
 //Add filter exception
 builder.Services.AddMvc(op => op.Filters.Add(typeof(ExceptionFilter)));
+
+builder.Services.AddApplication(builder.Configuration);// Using extension method 
+builder.Services.AddInfrastructure(builder.Configuration);// Using extension method 
 
 var app = builder.Build();
 
