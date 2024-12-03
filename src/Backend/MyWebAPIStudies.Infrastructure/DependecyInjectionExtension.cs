@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentMigrator.Runner;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyWebAPIStudies.Domain.Repositories;
 using MyWebAPIStudies.Domain.Repositories.User;
 using MyWebAPIStudies.Infrastructure.Data;
 using MyWebAPIStudies.Infrastructure.Repositories;
+using System.Reflection;
 
 namespace MyWebAPIStudies.Infrastructure
 {
@@ -13,6 +15,7 @@ namespace MyWebAPIStudies.Infrastructure
 		public static void AddInfrastructure(this IServiceCollection service, IConfiguration config)
 		{
 			AddDbContext(service, config);
+			AddFluentMigrator(service, config);
 			AddRepositories(service);
 		}
 
@@ -33,6 +36,18 @@ namespace MyWebAPIStudies.Infrastructure
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
 			services.AddScoped<IUserReadOnlyRepository, UserRepository>();
+		}
+
+		private static void AddFluentMigrator(IServiceCollection services, IConfiguration configuration)
+		{
+			var connectionString = configuration.GetConnectionString("Connection");
+
+			services.AddFluentMigratorCore().ConfigureRunner(opt =>{
+				opt
+				.AddMySql5()
+				.WithGlobalConnectionString(connectionString)
+				.ScanIn(Assembly.Load("MyWebAPIStudies.Infrastructure")).For.All();
+			});
 		}
 	}
 }

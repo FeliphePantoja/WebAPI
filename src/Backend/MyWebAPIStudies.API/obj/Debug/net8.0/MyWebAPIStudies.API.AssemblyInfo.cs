@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("MyWebAPIStudies.API.Test")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyWebAPIStudies.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82dd5821ef5764cb3e49a99fe9de8940212f17f2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5674d1b942aca86a7c8617a1da99e0dc9d664f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyWebAPIStudies.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyWebAPIStudies.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

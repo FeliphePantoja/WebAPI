@@ -2,6 +2,7 @@ using MyWebAPIStudies.API.Filters;
 using MyWebAPIStudies.Application;
 using MyWebAPIStudies.Domain.Repositories.User;
 using MyWebAPIStudies.Infrastructure;
+using MyWebAPIStudies.Infrastructure.Migrations;
 using MyWebAPIStudies.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,5 +34,20 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+MigrateDataBase();
 app.Run();
+
+void MigrateDataBase()
+{
+	var connect = builder
+		.Configuration
+		.GetConnectionString("Connection");
+
+	var serviceScope = app
+		.Services
+		.GetRequiredService<IServiceScopeFactory>()
+		.CreateScope()
+		.ServiceProvider;
+
+	DataBaseMigration.Migrate(connect!, serviceScope);
+}

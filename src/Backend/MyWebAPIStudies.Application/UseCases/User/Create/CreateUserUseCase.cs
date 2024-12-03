@@ -42,7 +42,7 @@ namespace MyWebAPIStudies.Application.UseCases.User.Create
 
 			return new ResponseCreateUserJson
 			{
-				Name = newUser.Name,
+				Name = user.Name,
 			};
 		}
 
