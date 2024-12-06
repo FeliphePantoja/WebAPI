@@ -1,9 +1,7 @@
 using MyWebAPIStudies.API.Filters;
 using MyWebAPIStudies.Application;
-using MyWebAPIStudies.Domain.Repositories.User;
 using MyWebAPIStudies.Infrastructure;
 using MyWebAPIStudies.Infrastructure.Migrations;
-using MyWebAPIStudies.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +37,9 @@ app.Run();
 
 void MigrateDataBase()
 {
+	if (builder.Configuration.GetValue<bool>("InMemoryTest"))
+		return;
+
 	var connect = builder
 		.Configuration
 		.GetConnectionString("Connection");
@@ -51,3 +52,5 @@ void MigrateDataBase()
 
 	DataBaseMigration.Migrate(connect!, serviceScope);
 }
+
+public partial class Program { }

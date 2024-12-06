@@ -1,4 +1,5 @@
-﻿using FluentMigrator.Runner;
+﻿using FirebirdSql.Data.Services;
+using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +15,13 @@ namespace MyWebAPIStudies.Infrastructure
 	{
 		public static void AddInfrastructure(this IServiceCollection service, IConfiguration config)
 		{
+			AddRepositories(service);
+
+			if (config.GetValue<bool>("InMemoryTest"))
+				return;
+
 			AddDbContext(service, config);
 			AddFluentMigrator(service, config);
-			AddRepositories(service);
 		}
 
 		private static void AddDbContext(IServiceCollection services, IConfiguration config)
@@ -42,7 +47,8 @@ namespace MyWebAPIStudies.Infrastructure
 		{
 			var connectionString = configuration.GetConnectionString("Connection");
 
-			services.AddFluentMigratorCore().ConfigureRunner(opt =>{
+			services.AddFluentMigratorCore().ConfigureRunner(opt =>
+			{
 				opt
 				.AddMySql5()
 				.WithGlobalConnectionString(connectionString)
