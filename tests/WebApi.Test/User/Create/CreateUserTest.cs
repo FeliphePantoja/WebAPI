@@ -13,7 +13,7 @@ namespace WebApi.Test.User.Create
 		public CreateUserTest(WebApplicationFactory factory) => _httpClient = factory.CreateClient();
 
 		[Fact]
-		public async Task should_success_request_create()
+		public async Task Should_success_request_create()
 		{
 			var request = CreateUserValidatorBuilder.Build();
 
@@ -31,6 +31,25 @@ namespace WebApi.Test.User.Create
 				.NotBeNullOrWhiteSpace()
 				.And
 				.Be(request.Name);
+		}
+
+		[Fact]
+		public async Task Should_fail_request_creat()
+		{
+			var request = CreateUserValidatorBuilder.Build();
+			request.Name = string.Empty;
+
+			var response = await _httpClient.PostAsJsonAsync("/api/User", request);
+
+			response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+			await using var responseBody = await response.Content.ReadAsStreamAsync();
+
+			var responseData = await JsonDocument.ParseAsync(responseBody);
+
+			var errors = responseData.RootElement.GetProperty("errors").EnumerateArray();
+
+			errors.Should().ContainSingle();
 		}
 	}
 }
