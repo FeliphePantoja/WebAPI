@@ -1,6 +1,6 @@
 ﻿namespace MyWebAPIStudies.Exceptions.ExceptionsBase
 {
-	public class MyRecipeException : SystemException
+	public class MyRecipeException(string message) : SystemException(message)
 	{
 	}
 }

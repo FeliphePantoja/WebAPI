@@ -3,6 +3,7 @@ using MyWebAPIStudies.Application.AutoMappers;
 using MyWebAPIStudies.Application.Cryptography;
 using MyWebAPIStudies.Application.UseCases.User.Create;
 using Microsoft.Extensions.Configuration;
+using MyWebAPIStudies.Application.UseCases.Login.DoLogin;
 
 namespace MyWebAPIStudies.Application
 {
@@ -25,6 +26,7 @@ namespace MyWebAPIStudies.Application
 		private static void AddUserCases(IServiceCollection service)
 		{
 			service.AddScoped<ICreateUserCase, CreateUserUseCase>();
+			service.AddScoped<IDoLoginUserCase, DoLoginUserCase>();
 		}
 
 		private static void AddPassWordEncrypter(IServiceCollection service, IConfiguration config)

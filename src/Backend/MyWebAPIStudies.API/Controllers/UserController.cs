@@ -5,9 +5,7 @@ using MyWebAPIStudies.Communication.Responses;
 
 namespace MyWebAPIStudies.API.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class UserController : ControllerBase
+	public class UserController : BaseController
 	{
 		[HttpPost]
 		[ProducesResponseType(typeof(ResponseCreateUserJson), StatusCodes.Status201Created)]

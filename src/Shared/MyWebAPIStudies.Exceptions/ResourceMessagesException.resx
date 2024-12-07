@@ -123,6 +123,9 @@
   <data name="EMAIL_EXISTE" xml:space="preserve">
     <value>O E-mail já foi cadastrado</value>
   </data>
+  <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+    <value>E-mail e/ou senha inválidos.</value>
+  </data>
   <data name="FORMAT_EMAIL_INCORRECT" xml:space="preserve">
     <value>O formato do e-mail está incorreto.</value>
   </data>

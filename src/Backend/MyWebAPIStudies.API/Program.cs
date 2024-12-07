@@ -1,3 +1,4 @@
+using MyWebAPIStudies.API.Converters;
 using MyWebAPIStudies.API.Filters;
 using MyWebAPIStudies.Application;
 using MyWebAPIStudies.Infrastructure;
@@ -7,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+	//this AddJsonOptions remove spaces in strings.
+	.AddJsonOptions(opt => opt.JsonSerializerOptions.Converters.Add(new StringConverter()));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,6 +21,9 @@ builder.Services.AddMvc(op => op.Filters.Add(typeof(ExceptionFilter)));
 
 builder.Services.AddApplication(builder.Configuration);// Using extension method 
 builder.Services.AddInfrastructure(builder.Configuration);// Using extension method 
+
+//Para deixar a url com o padrão minusculo ex : User para user
+builder.Services.AddRouting(opt => opt.LowercaseUrls = true);
 
 var app = builder.Build();
 

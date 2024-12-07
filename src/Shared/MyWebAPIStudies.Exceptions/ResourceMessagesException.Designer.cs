@@ -79,6 +79,15 @@ namespace MyWebAPIStudies.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail e/ou senha inválidos..
+        /// </summary>
+        public static string EMAIL_OR_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O formato do e-mail está incorreto..
         /// </summary>
         public static string FORMAT_EMAIL_INCORRECT {
