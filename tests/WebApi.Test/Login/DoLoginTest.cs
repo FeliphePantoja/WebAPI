@@ -1,12 +1,10 @@
-﻿using Azure.Core;
-using System.Net.Http.Json;
-using System.Net;
-using System.Text.Json;
-using MyWebAPIStudies.Communication.Requests;
+﻿using CommonTestUtil.Requests;
 using FluentAssertions;
-using CommonTestUtil.Requests;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using MyWebAPIStudies.Communication.Requests;
 using MyWebAPIStudies.Exceptions;
+using System.Net;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace WebApi.Test.Login
 {

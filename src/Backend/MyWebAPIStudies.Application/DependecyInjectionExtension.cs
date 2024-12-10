@@ -4,6 +4,7 @@ using MyWebAPIStudies.Application.Cryptography;
 using MyWebAPIStudies.Application.UseCases.User.Create;
 using Microsoft.Extensions.Configuration;
 using MyWebAPIStudies.Application.UseCases.Login.DoLogin;
+using MyWebAPIStudies.Application.UseCases.Profile;
 
 namespace MyWebAPIStudies.Application
 {
@@ -27,6 +28,7 @@ namespace MyWebAPIStudies.Application
 		{
 			service.AddScoped<ICreateUserCase, CreateUserUseCase>();
 			service.AddScoped<IDoLoginUserCase, DoLoginUserCase>();
+			service.AddScoped<IGetUserProfileCase, GetUserProfileCase>();
 		}
 
 		private static void AddPassWordEncrypter(IServiceCollection service, IConfiguration config)

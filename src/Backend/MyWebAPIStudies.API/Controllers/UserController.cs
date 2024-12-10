@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyWebAPIStudies.Application.UseCases.Profile;
 using MyWebAPIStudies.Application.UseCases.User.Create;
 using MyWebAPIStudies.Communication.Requests;
 using MyWebAPIStudies.Communication.Responses;
@@ -15,6 +16,16 @@ namespace MyWebAPIStudies.API.Controllers
 		{
 			var userCase = await createUser.Execute(user);
 			return Created(string.Empty, userCase);
+		}
+
+		[HttpGet]
+		[ProducesResponseType(typeof(ResponseCreateUserJson),StatusCodes.Status200OK)]
+		public async Task<IActionResult> GetUserProfile(
+			[FromServices] IGetUserProfileCase useCase, 
+			[FromBody] RequestProfileJson requestProfile)
+		{
+			var result = await useCase.Execute(requestProfile);
+			return Ok(result);
 		}
 	}
 }

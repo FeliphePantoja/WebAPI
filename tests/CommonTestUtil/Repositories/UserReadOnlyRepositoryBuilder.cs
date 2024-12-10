@@ -24,5 +24,10 @@ namespace CommonTestUtil.Repositories
 			_repository.Setup(repo => repo.GetUserByEmailAndPassword(user.Email, user.Password)).ReturnsAsync(user);
 		}
 
+		public void GetUserProfile(User user)
+		{
+			_repository.Setup(repo => repo.GetUserProfile(user.Email)).ReturnsAsync(user);
+		}
+
 	}
 }

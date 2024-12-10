@@ -22,5 +22,13 @@ namespace MyWebAPIStudies.Infrastructure.Repositories
 				.AsNoTracking()// NoTracking informamos para nosso repositorio que esse retono não será atualizado (melhora de peformace).
 				.FirstOrDefaultAsync(user => user.Email.Equals(email) && password.Equals(password) && user.IsActive);
 		}
+
+		public async Task<User?> GetUserProfile(string email)
+		{
+			return await _myDbContext
+				.Users
+				.AsNoTracking()
+				.SingleOrDefaultAsync(user => user.Email.Equals(email));
+		}
 	}
 }

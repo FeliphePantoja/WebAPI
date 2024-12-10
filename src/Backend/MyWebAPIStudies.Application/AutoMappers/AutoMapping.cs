@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyWebAPIStudies.Communication.Requests;
+using MyWebAPIStudies.Communication.Responses;
 
 namespace MyWebAPIStudies.Application.AutoMappers
 {
@@ -8,6 +9,7 @@ namespace MyWebAPIStudies.Application.AutoMappers
 		public AutoMapping()
 		{
 			RequestToDomain();
+			DomainToResponse();
 		}
 
 		private void RequestToDomain()
@@ -20,6 +22,11 @@ namespace MyWebAPIStudies.Application.AutoMappers
 			//CreateMap<RequestCreateUserJson, Domain.Entities.User>()
 			//	.ForMember(dest => dest.Password, opt => opt.MapFrom(source => source.Password)); 
 			#endregion
+		}
+
+		private void DomainToResponse()
+		{
+			CreateMap<Domain.Entities.User, ResponseUserProfileJson>();
 		}
 	}
 }
