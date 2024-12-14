@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyWebAPIStudies.Application.UseCases.Profile;
+using MyWebAPIStudies.Application.UseCases.Update;
 using MyWebAPIStudies.Application.UseCases.User.Create;
 using MyWebAPIStudies.Communication.Requests;
 using MyWebAPIStudies.Communication.Responses;
@@ -26,6 +27,17 @@ namespace MyWebAPIStudies.API.Controllers
 		{
 			var result = await useCase.Execute(requestProfile);
 			return Ok(result);
+		}
+
+		[HttpGet]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status400BadRequest)]
+		public async Task<IActionResult> Update(
+			[FromServices] IUpdateUserCase userCase,
+			[FromBody] RequestUpdateUserJson request)
+		{
+			await userCase.Execute(request);
+			return NoContent();
 		}
 	}
 }

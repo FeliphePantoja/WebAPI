@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyWebAPIStudies.Domain.Entities;
+using MyWebAPIStudies.Domain.Repositories.UpdateUser;
 using MyWebAPIStudies.Domain.Repositories.User;
 using MyWebAPIStudies.Infrastructure.Data;
 
 namespace MyWebAPIStudies.Infrastructure.Repositories
 {
-	public class UserRepository : IUserReadOnlyRepository, IUserWriteOnlyRepository
+	public class UserRepository : IUserReadOnlyRepository, IUserWriteOnlyRepository, IUserUpdateOnlyRepository
 	{
 		private readonly MyDbContext _myDbContext;
 		public UserRepository(MyDbContext dbContext) => _myDbContext = dbContext;
@@ -29,6 +30,18 @@ namespace MyWebAPIStudies.Infrastructure.Repositories
 				.Users
 				.AsNoTracking()
 				.SingleOrDefaultAsync(user => user.Email.Equals(email));
+		}
+
+		public async Task<User> GetById(long id)
+		{
+			return await _myDbContext
+				.Users
+				.FirstAsync(user => user.Id == id);
+		}
+
+		public void Update(User user)
+		{
+			_myDbContext.Users.Update(user);
 		}
 	}
 }
